@@ -1,0 +1,10 @@
+@layer base {
+  body {
+    // TODO: WindowsでNoto Sansが標準装備されたら検証し調整
+    font-family: 'Noto Sans', 'Noto Sans JP', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}

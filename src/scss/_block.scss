@@ -1,0 +1,88 @@
+@use 'config';
+
+@layer block {
+  .bl_header_title {
+    font-size: clamp(1rem, 4vw, 3rem);
+  }
+
+  :is(.bl_header_title, .bl_header_subTitle, .bl_header_sectionTitle) {
+    font-weight: bold;
+    text-wrap: balance;
+  }
+
+  .bl_info {
+    padding: 1em;
+    background-color: var(--color3);
+  }
+
+  .bl_info_inner {
+    width: fit-content;
+    margin-inline: auto;
+  }
+
+  .bl_info_img {
+    width: 100px;
+    aspect-ratio: 1;
+    background-color: var(--color1);
+  }
+
+  .bl_card_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); // メディアクエリを使わなくてもレスポンシブが実現できる。min関数を使うことで親要素が指定横幅を下回った場合でも横スクロールバーを表示させない
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .bl_card_item {
+    position: relative;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4; // 親要素の何行分の高さか
+    row-gap: 0.2em; // 要素のグリッド行の間のすき間
+    width: 100%;
+    padding: 1em;
+    background-color: var(--color3);
+
+    &:has(.bl_card_button) {
+      border: 5px solid var(--color1);
+    }
+  }
+
+  .bl_card_title {
+    container-type: inline-size; // .bl_card_itemやそのインナーやラッパーに設定してもsubgridが崩れてしまう
+    span {
+      display: block;
+    }
+  }
+
+  @container (width > 380px) {
+    .bl_card_title span {
+      font-size: 1.5rem;
+      color: var(--color-red);
+    }
+  }
+
+  .bl_card_img {
+    width: 100%;
+    height: auto;
+  }
+
+  .bl_card_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 3em;
+    margin-top: 1em;
+    color: var(--color-white);
+    background-color: var(--color1);
+    border: solid 3px currentcolor;
+    border-radius: 100vmax;
+  }
+
+  @media (any-hover: hover) {
+    .bl_card_button:hover {
+      color: var(--color-red);
+    }
+  }
+}
